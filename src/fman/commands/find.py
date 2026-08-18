@@ -33,7 +33,7 @@ def find_path(
     if search_type not in ('file', 'dir', 'both'):
         raise ValueError("search_type must be 'file', 'dir', or 'both'")
     
-    start = Path(start_path)
+    start = Path(start_path).resolve()
     
     if not start.exists():
         raise FileNotFoundError(f"Path {start_path} does not exist.")

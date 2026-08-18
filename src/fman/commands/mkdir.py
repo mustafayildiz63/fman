@@ -1,12 +1,10 @@
-import shutil
 from pathlib import Path
 
 
-def make_dir(path:str)->None:
-    p=Path(path)
+def make_dir(path: str) -> None:
+    dir_path=Path(path).resolve()
+    if dir_path.exists():
+        raise ValueError(f"{path} already exists")
 
-    if p.exists():
-        raise ValueError(f"{path} already exist")
-
-    p.mkdir(parents=True,exist_ok=False)
-    raise NotImplementedError("create_dir is not implemented yet ")
+    dir_path.mkdir(parents=True, exist_ok=False)
+    

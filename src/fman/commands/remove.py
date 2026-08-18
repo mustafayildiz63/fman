@@ -1,7 +1,7 @@
 import shutil
 from pathlib import Path 
 
-def remove(path:str,force:bool=False)->None:
+def removePath(path:str,force:bool=False)->None:
     p=Path(path)
 
     if not p.exists():
@@ -13,11 +13,10 @@ def remove(path:str,force:bool=False)->None:
 
             print("Delete operation cancelled.")
             return
-
-    if p.is_file():
-        p.unlink()
-    elif p.is_dir():
-        shutil.rmtree(p)
-
-    raise NotImplementedError("remove() is not yet implemented.")
         
+        if yes_or_no.lower() == "y":
+
+            if p.is_file():
+                p.unlink()
+            elif p.is_dir():
+                shutil.rmtree(p)
