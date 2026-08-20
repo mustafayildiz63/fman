@@ -31,7 +31,7 @@ def path_info(path: str) -> dict:
             - accessed: Last access time (ISO format)
             - is_hidden: Whether the file/directory is hidden (Windows)
     """
-    p = Path(path)
+    p = Path(path).resolve()
     info_dict = {
         'name': p.name,
         'absolute_path': str(p.absolute()),
@@ -54,7 +54,7 @@ def path_info(path: str) -> dict:
     
     # Get size
     if p.is_file():
-        info_dict['size'] = p.stat().st_size
+        info_dict['size'] = p.stat().st_size()
     else:
         info_dict['size'] = None
     

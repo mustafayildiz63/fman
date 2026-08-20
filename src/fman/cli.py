@@ -1,6 +1,5 @@
 import argparse
 from pathlib import Path
-
 from commands import cat, find, info, ls, mkdir, move, remove
 
 def main():
@@ -11,6 +10,16 @@ def main():
     )
 
     """Created severeal command with add_argument function"""
+    parser.add_argument(
+        "-f",
+        "--find",
+        help="Find command helps you to search a file or directory."
+    )
+    parser.add_argument(
+        "-i",
+        "--info",
+        help="This command gives information about given directory or file."
+    )
     parser.add_argument(
         "-mv",
         "--move",
@@ -65,8 +74,18 @@ def main():
     args: argparse.Namespace = parser.parse_args()
 
 
+    if args.find:
+
+        result=find.find_path(start_path=r"C:\\Users\\msi",name_pattern=args.find)
+        print(result)
+    if args.info:
+        
+        result=info.path_info(args.info)
+        print(result)
+
     if args.remove:
         remove.removePath(args.remove)
+
     if args.move:
         try:
             move.move_path(args.source,args.destination)
@@ -74,24 +93,26 @@ def main():
             print(f"Error from moving operation : {e}")
 
     if args.mkdir:
-        
         print(f"Creating directory: {args.mkdir}")
         mkdir.make_dir(args.mkdir)
 
 
     if args.list:
+
         print("Listing files in the current directory:")
         current_directory = Path.cwd()
 
         result=ls.list_dir(current_directory)
 
         for item in result:
+
             if item['type'] == 'Dir':
                 print(f"[DIR] {item['name']} - Size: {item['size']} bytes")
             elif item['type'] == 'File':
                 print(f"[FILE] {item['name']} - Size: {item['size']} bytes")
 
     if args.cat:
+
         path_to_file = Path(args.cat)
         print(f"Displaying contents of file: {path_to_file}")
         
