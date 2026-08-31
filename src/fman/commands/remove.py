@@ -2,7 +2,7 @@ import shutil
 from pathlib import Path 
 
 def removePath(path:str,force:bool=False)->None:
-    p=Path(path)
+    p=Path(path).resolve()
 
     if not p.exists():
         raise FileNotFoundError(f"Path {path} does not exist .")

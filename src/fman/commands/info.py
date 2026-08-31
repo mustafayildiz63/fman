@@ -54,7 +54,7 @@ def path_info(path: str) -> dict:
     
     # Get size
     if p.is_file():
-        info_dict['size'] = p.stat().st_size()
+        info_dict['size'] = p.stat().st_size
     else:
         info_dict['size'] = None
     

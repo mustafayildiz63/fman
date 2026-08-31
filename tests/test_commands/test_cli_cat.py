@@ -1,5 +1,5 @@
 import sys
-
+import pytest
 
 def test_cli_cat_command_prints_file_contents(monkeypatch, tmp_path, capsys):
     file_path = tmp_path / "example.txt"

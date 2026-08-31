@@ -1,6 +1,6 @@
 import argparse
 from pathlib import Path
-from commands import cat, find, info, ls, mkdir, move, remove
+from fman.commands import cat, find, info, ls, mkdir, move, remove
 
 def main():
 
